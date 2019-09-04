@@ -9,36 +9,26 @@ GAME RULES:
 
 */
 
-// var imgArray = new Array(6);
+let initial = 0;
+var global=0;
+var current= 0;
+var global1=document.getElementById("score-0");
+var global2=document.getElementById("score-1");
+var current1=document.getElementById("current-0").innerHTML;
+var current2=document.getElementById("current-1");
+var playerswitch=0;
 
-// imgArray[0] = new Image();
-// imgArray[0].src = 'dice-1.png';
 
-// imgArray[1] = new Image();
-// imgArray[1].src = 'dice-2.png';
+function resetcurrent(){
+    current=0
+}
 
-// imgArray[2] = new Image();
-// imgArray[2].src = 'dice-3.png';
 
-// imgArray[3] = new Image();
-// imgArray[3].src = 'dice-4.png';
-
-// imgArray[4] = new Image();
-// imgArray[4].src = 'dice-5.png';
-
-// imgArray[5] = new Image();
-// imgArray[5].src = 'dice-6.png';
-
-// function option(x){
-//     document.getElementById('displaydice').src = 
-//    }
 const diceSide = ["dice-1.png", "dice-2.png","dice-3.png","dice-4.png","dice-5.png","dice-6.png"]
 function f(){
     var randomDice = (Math.random()*6) +1;
     var myDice = Math.floor(randomDice);
-    console.log(myDice)
-    
-   
+    console.log(myDice)   
    
     switch(myDice){
         case 1 :  document.getElementById('displaydice').src = diceSide[0];
@@ -53,4 +43,31 @@ function f(){
         break;
         case 6 : document.getElementById('displaydice').src = diceSide[5];
     }
+    
+    current= current + myDice;
+    console.log(current) ;
+    switch (playerswitch){
+        case 0:document.getElementById("current-0").innerHTML=current;
+        break
+        case 1:document.getElementById("current-1").innerHTML=current;
+    }
+    global=global + current
+}
+
+function hold(){
+       
+     switch (playerswitch){
+        
+        case 0: 
+        document.getElementById("score-0").innerHTML= global
+        playerswitch=1;document.getElementById("score-0").innerHTML=global;
+        global=0;
+        break
+        case 1:
+        document.getElementById("score-1").innerHTML= global
+        playerswitch=0;document.getElementById("score-1").innerHTML=global;
+        global=0;
+    }
+
+ 
 }
